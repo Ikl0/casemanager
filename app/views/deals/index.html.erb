@@ -3,6 +3,7 @@
 <h1>Deals List</h1>
 
   <%= render 'deals/search_form.html.erb' %>
+
 <table>
   <thead>
     <tr>
@@ -27,7 +28,9 @@
   </tbody>
 </table>
 
-<br>
+  <%= will_paginate @deals, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+
+<br/>
 
 <% link_to 'New Deal', new_deal_path %>
   <br/>
