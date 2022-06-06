@@ -8,20 +8,24 @@
       <th>Title</th>
       <th>Description</th>
       <th>Status</th>
+      <th>User ID</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @deals.each do |deal| %>
+  <%if deal.user == current_user %>
       <tr>
         <td><%= deal.title %></td>
         <td><%= deal.description %></td>
         <td><%= deal.status %></td>
+        <td><%= deal.user_id %></td>
         <td><%= link_to 'Show', deal %></td>
         <td><%= link_to 'Edit', edit_deal_path(deal) %></td>
         <td><%= link_to 'Destroy', deal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+  <%end %>
     <% end %>
   </tbody>
 </table>

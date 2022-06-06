@@ -1,6 +1,7 @@
 class DealsController < ApplicationController
   before_action :set_deal, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, only: [:edit,:update,:destroy]
   # GET /deals or /deals.json
   def index
     @deals = Deal.all
@@ -12,7 +13,8 @@ class DealsController < ApplicationController
 
   # GET /deals/new
   def new
-    @deal = Deal.new
+    #@deal = Deal.new
+    @deal = current_user.deals.build
   end
 
   # GET /deals/1/edit
@@ -21,8 +23,8 @@ class DealsController < ApplicationController
 
   # POST /deals or /deals.json
   def create
-    @deal = Deal.new(deal_params)
-
+    #@deal = Deal.new(deal_params)
+    @deal = current_user.deals.build(deal_params)
     respond_to do |format|
       if @deal.save
         format.html { redirect_to deal_url(@deal), notice: "Deal was successfully created." }
@@ -57,6 +59,11 @@ class DealsController < ApplicationController
     end
   end
 
+
+  def correct_user
+    @deal = current_user.deals.find_by(id: params[:id])
+    redirect_to deals_path, notice: "Not Authorized" if @deal.nil?
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_deal
@@ -65,6 +72,6 @@ class DealsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def deal_params
-      params.require(:deal).permit(:title, :description, :status)
+      params.require(:deal).permit(:title, :description, :status, :user_id)
     end
 end
