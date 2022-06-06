@@ -23,8 +23,10 @@
 
   <div class="field">
     <%= form.label :status %>
-    <%= form.text_field :status %>
+    <% form.text_field :status %>
+    <%= form.select :status, ['New', 'Active','Done']%>
   </div>
+
   <div class="field">
 <%= form.number_field :user_id, id: :friend_user_id, class: "from-control", value:current_user.id, type: :hidden %>
   </div>
