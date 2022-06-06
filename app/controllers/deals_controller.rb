@@ -4,7 +4,8 @@ class DealsController < ApplicationController
   before_action :correct_user, only: [:edit,:update,:destroy]
   # GET /deals or /deals.json
   def index
-    @deals = Deal.all
+    @q = Deal.ransack(params[:q])
+    @deals = @q.result(distinct: true)
   end
 
   # GET /deals/1 or /deals/1.json

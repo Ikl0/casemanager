@@ -2,12 +2,13 @@
 <% if user_signed_in? %>
 <h1>Deals List</h1>
 
+  <%= render 'deals/search_form.html.erb' %>
 <table>
   <thead>
     <tr>
       <th>Title</th>
       <th>Description</th>
-      <th>Status</th>
+      <th><%= sort_link(@q, :status, "Status",default_order: :asc) %></th>
     </tr>
   </thead>
 
@@ -28,7 +29,9 @@
 
 <br>
 
-<%= link_to 'New Deal', new_deal_path %>
+<% link_to 'New Deal', new_deal_path %>
+  <br/>
+  <% link_to 'Back', deals_path %>
 <%else %>
   <h1>Home#index</h1>
   <p>Find me in app/views/home/index.html.erb</p>
