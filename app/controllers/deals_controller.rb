@@ -4,7 +4,11 @@ class DealsController < ApplicationController
   before_action :correct_user, only: [:edit,:update,:destroy]
   # GET /deals or /deals.json
   def index
-    @deals = Deal.all
+    q_param = params[:q]
+    page = params[:page]
+    per_page = params[:per_page]
+    @q = Deal.ransack(params[:q])
+    @deals = @q.result(distinct: true).paginate(page: params[:page], per_page: 6)
   end
 
   # GET /deals/1 or /deals/1.json

@@ -1,0 +1,12 @@
+<%= search_form_for @q do |f| %>
+
+
+  <% f.label 'Search by title' %>
+  <%= f.search_field :title_cont, placeholder: 'Title' %>
+  <% f.label "Search by status "%>
+  <% f.select :status_cont, ['New', 'Active','Done']%>
+
+
+<%= f.submit "Search" %>
+  <%= link_to 'Reset', deals_path %>
+<% end %>
