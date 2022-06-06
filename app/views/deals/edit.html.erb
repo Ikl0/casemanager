@@ -2,5 +2,6 @@
 
 <%= render 'form', deal: @deal %>
 
-<%= link_to 'Show', @deal %> |
+<%= link_to 'Show', @deal %>
+<%= link_to 'Delete', @deal, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-outline-danger btn-sm' %>
 <%= link_to 'Back', deals_path %>
