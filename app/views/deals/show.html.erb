@@ -1,19 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @deal.title %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @deal.description %>
-</p>
+<div class="jumbotron">
+  <h1 class="display-4"><%= @deal.title %></h1>
+  <p class="lead">  <%= @deal.description %></p>
+  <hr class="my-4">
+  <p>  <%= @deal.status %></p>
+  <br/><br/>
 
-<p>
-  <strong>Status:</strong>
-  <%= @deal.status %>
-</p>
-
-<%= link_to 'Edit', edit_deal_path(@deal) %> |
-<%= link_to 'Back', deals_path %>
+  <%= link_to 'Edit', edit_deal_path(@deal), class:"btn btn-light"%>
+  <%= link_to 'List', deals_path, class:"btn btn-outline-dark" %>
+</div>
