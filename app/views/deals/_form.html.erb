@@ -11,27 +11,27 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="field form-group">
+    <%form.label :title %>
+    <%= form.text_field :title, class:"form-control",placeholder:'Title' %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
+  <div class="field form-group">
+    <%form.label :description %>
+    <%= form.text_field :description, class:"form-control",placeholder:'Description' %>
   </div>
 
-  <div class="field">
-    <%= form.label :status %>
+  <div class="field form-group">
+    <%=form.label :status %>
     <% form.text_field :status %>
-    <%= form.select :status, ['New', 'Active','Done']%>
+    <%= form.select :status, ['New', 'Active','Done'], class:"form-control"%>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
 <%= form.number_field :user_id, id: :friend_user_id, class: "from-control", value:current_user.id, type: :hidden %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-outline-info" %>
   </div>
 <% end %>
