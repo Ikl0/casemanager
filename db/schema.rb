@@ -1,4 +1,3 @@
-
 ActiveRecord::Schema.define(version: 2022_06_06_113239) do
 
   create_table "deals", force: :cascade do |t|

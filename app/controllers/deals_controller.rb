@@ -1,14 +1,11 @@
 class DealsController < ApplicationController
   before_action :set_deal, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!
   before_action :correct_user, only: [:edit,:update,:destroy]
   # GET /deals or /deals.json
   def index
-    q_param = params[:q]
-    page = params[:page]
-    per_page = params[:per_page]
-    @q = Deal.ransack(params[:q])
-    @deals = @q.result(distinct: true).paginate(page: params[:page], per_page: 6)
+    @q = current_user.deals.ransack(params[:q])
+    @deals = @q.result(distinct: true).paginate(page: params[:page], per_page: 5)
   end
 
   # GET /deals/1 or /deals/1.json
@@ -27,8 +24,8 @@ class DealsController < ApplicationController
 
   # POST /deals or /deals.json
   def create
-    #@deal = Deal.new(deal_params)
-    @deal = current_user.deals.build(deal_params)
+    @deal = Deal.new(deal_params)
+    # @deal = current_user.deals.build(deal_params)
     respond_to do |format|
       if @deal.save
         format.html { redirect_to deal_url(@deal), notice: "Deal was successfully created." }
@@ -76,6 +73,7 @@ class DealsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def deal_params
+      p params
       params.require(:deal).permit(:title, :description, :status, :user_id)
     end
 end
