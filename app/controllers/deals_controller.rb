@@ -5,7 +5,7 @@ class DealsController < ApplicationController
   # GET /deals or /deals.json
   def index
     @q = current_user.deals.ransack(params[:q])
-    @deals = @q.result(distinct: true).paginate(page: params[:page], per_page: 5)
+    @deals = @q.result(distinct: true).paginate(page: params[:page], per_page: 20)
   end
 
   # GET /deals/1 or /deals/1.json
