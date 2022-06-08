@@ -1,7 +1,13 @@
-<h1>Edit Deal</h1>
-<%= render 'form', deal: @deal %>
+<div class="card">
+  <div class="card-header">
+    <h4>Edit Deal</h4>
+  </div>
+  <div class="card-body">
+    <%= render 'form', deal: @deal %>
+    <% link_to 'Show', @deal %>
+    <br/>
+    <%= link_to 'Delete', @deal, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-outline-danger btn-sm' %>
+    <%= link_to 'List', deals_path, class:"btn btn-outline-dark btn-sm" %>
+  </div>
+</div>
 
-<% link_to 'Show', @deal %>
-<br/>
-<%= link_to 'Delete', @deal, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-outline-danger btn-sm' %>
-<%= link_to 'List', deals_path, class:"btn btn-outline-dark btn-sm" %>

@@ -1,6 +1,13 @@
-<h1>New Deal</h1>
+<div class="card">
+  <div class="card-header">
+    <h4>New Deal</h4>
+  </div>
+  <div class="card-body">
+    <%= render 'form', deal: @deal %>
+    <br/>
+    <%= link_to 'List', deals_path, class:"btn btn-outline-dark btn-sm" %>
+  </div>
+</div>
 
-<%= render 'form', deal: @deal %>
-<br/>
-<%= link_to 'List', deals_path, class:"btn btn-outline-dark btn-sm" %>
+
 

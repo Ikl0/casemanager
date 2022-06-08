@@ -28,6 +28,7 @@
   </div>
 
   <div class="field form-group">
+    <%=form.label :user %>
     <%= form.collection_select :user_id, User.order(:email),:id, :email%>
   </div>
 
